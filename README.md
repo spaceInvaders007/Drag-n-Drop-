@@ -1,27 +1,46 @@
-# franklin-frontend-task
+# Getting Started with Create React App
 
-Technical frontend assessment for franklin.ai
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-This is a technical assessment task for Frontend Software Engineering roles at [franklin.ai](https://franklin.ai/).
+## Available Scripts
 
-Your task is to develop a web application based on a [Figma prototype](https://www.figma.com/proto/krV1Uw4Dh84NUzIJg0pDUH/Coding-Test---Draggable-Component?node-id=1%3A5&scaling=min-zoom&page-id=0%3A1&starting-point-node-id=1%3A94). The app must pull some data from the json file in the repository and render it according to the prototype. You will also need to ensure the functionality is as specified in the prototype. You may implement the app in any framework of your choosing (React, Angular, Vue, Svelte, Solid, etc.). A Typescript implementation would be preferable. 
+In the project directory, you can run:
 
-The only mandatory detail is that the package.json file must include a script to run the app on a local dev server so that the implementation can be tested.
+### `yarn start`
 
-## Task Expectations
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-You should take a copy of this repo, implement the requirements described in the prototype, and push them to GitHub for discussion in the scheduled technical interview. You're welcome to use a private repository, as long as it is visible to @doc-E-brown, @rickfoxcroft, @jayvdb, @ray-kw.
+The page will reload if you make edits.\
+You will also see any lint errors in the console.
 
-You will be given the email address of a member of the team, and should email this person with a link to your solution at least 24 hours before the scheduled technical interview. You're also encouraged to email them with questions at any time while working on this task.
+### `yarn test`
 
-**Please don't spend more than a few hours on this task.**
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-It's not a trick question and we're not expecting anything too elaborate. It's a small self-contained exercise to help us get to know you through your code - how you break down a problem, how you structure your code, you're approach to styling and solving design problems, and how you navigate problem solving with your potential future team-mates.
+### `yarn build`
 
-We'll be looking for well-structured, clear, maintainable code with reasonable performance characteristics. We would also like to see a responsive, extensible and accessible style implementation. We will not be looking for micro-optimisations or for every single detail to be carefully polished.
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-## Task Requirements
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
-All of the assets and style details required should be available in the [Figma prototype inspection](https://www.figma.com/file/krV1Uw4Dh84NUzIJg0pDUH/Coding-Test---Draggable-Component?node-id=0%3A1).
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-Use the `books.json` file located in the project root directory to fetch data required for the app. You will have to export the images for each book from the Figma prototype inspection and host them alongside your solution. Add the image location to the json file and refer to the images accordingly in your code.
+### `yarn eject`
+
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+
+## Learn More
+
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+To learn React, check out the [React documentation](https://reactjs.org/).
