@@ -1,26 +1,57 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from "react";
+import styled from "styled-components";
+import {Book} from "./types";
 
-function App() {
+const AppStyles = styled.div`
+  background-color: black;
+  color: white;
+  display: flex;
+  height: 100vh;
+  text-align: center;
+  padding-bottom: 2em;
+`;
+
+const SidebarWrap = styled.div`
+  max-width: 278px;
+  min-height: 100vh;
+  margin: 10px;
+  background-color: #eb5a52;
+  height: 100vh;
+  border-radius: 8px;
+  padding: 0.5em;
+`;
+
+const ContentWrap = styled.div`
+  width: 68%;
+  height: 100vh;
+  margin: 10px 10px 10px 0;
+  background-color: #eb5a52;
+  border-radius: 8px;
+  padding: 0.5em;
+  flex: 1;
+`;
+
+const App = () => {
+  const [bookCollection, setBookCollection] = useState<Book[]>([]);
+
+  useEffect(() => {
+    const fetchJson = async () => {
+      await fetch("/books.json")
+          .then((res) => res.json())
+          .then((data) => setBookCollection(data))
+          .catch((error) => console.error(error));
+    };
+    fetchJson();
+  }, []);
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <AppStyles>
+        <SidebarWrap>
+        </SidebarWrap>
+        <ContentWrap>
+        </ContentWrap>
+      </AppStyles>
   );
-}
-
+};
 export default App;
