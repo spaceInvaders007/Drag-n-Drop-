@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import {Book} from "./types";
+import {Sidebar} from "./sidebar/Sidebar";
 
 const AppStyles = styled.div`
   background-color: black;
@@ -48,6 +49,7 @@ const App = () => {
   return (
       <AppStyles>
         <SidebarWrap>
+            <Sidebar booksList={bookCollection}/>
         </SidebarWrap>
         <ContentWrap>
         </ContentWrap>

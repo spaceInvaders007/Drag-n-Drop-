@@ -6,3 +6,5 @@ export type Book = {
     imageUrl: string;
     isHidden: boolean;
 };
+
+export type Visibility = 'visible' | 'hidden'
