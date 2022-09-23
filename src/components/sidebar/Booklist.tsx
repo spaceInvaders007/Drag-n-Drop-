@@ -34,9 +34,8 @@ export const Booklist: FC<BooklistProps> = ({
       {items.map(
         ({ id, isHidden, title, author }) =>
           booleanStatus === isHidden && (
-            <div onMouseEnter={() => onMouseEnter(id)}>
+            <div onMouseEnter={() => onMouseEnter(id)} key={id}>
               <SidebarButton
-                key={id}
                 title={title}
                 isHidden={isHidden}
                 author={author}
