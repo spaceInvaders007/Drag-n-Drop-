@@ -8,20 +8,30 @@ const StyledBookList = styled.div`
 `;
 
 type BooklistProps = {
-  booksList: Book[];
+  items: Book[];
   visibility: Visibility;
+  handleUpdateList: (id: string) => void;
   onMouseEnter: (id: string) => void;
 };
 
 export const Booklist: FC<BooklistProps> = ({
-  booksList = [],
+  items = [],
   visibility,
+  handleUpdateList,
   onMouseEnter,
 }) => {
+  const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    handleUpdateList(e.dataTransfer.getData("text"));
+  };
+
+  const handleDragOver = (e: React.DragEvent<HTMLDivElement>) =>
+    e.preventDefault();
+
   let booleanStatus = visibility === "hidden";
   return (
-    <StyledBookList>
-      {booksList.map(
+    <StyledBookList onDrop={handleDrop} onDragOver={handleDragOver}>
+      {items.map(
         ({ id, isHidden, title, author }) =>
           booleanStatus === isHidden && (
             <div onMouseEnter={() => onMouseEnter(id)}>

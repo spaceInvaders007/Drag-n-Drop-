@@ -54,31 +54,31 @@ const BookCoverImage = styled.div`
 `;
 
 type ContentProps = {
-  author?: string;
-  title?: string;
-  imageUrl?: string;
-  publisherSummary?: string;
+    author?: string;
+    title?: string;
+    imageUrl?: string;
+    publisherSummary?: string;
 };
 
 export const Content: FC<ContentProps> = ({
-  author,
-  title,
-  imageUrl,
-  publisherSummary,
-}) => {
-  return (
-    <ContentWrap>
-      <ContentHeading data-testid="content-heading">
-        <BookCoverImage>
-          <img src={imageUrl} />
-        </BookCoverImage>
-        <TitleAndAuthorWrap>
-          <BookTitle>{title}</BookTitle>
-          <BookAuthor>{author}</BookAuthor>
-        </TitleAndAuthorWrap>
-      </ContentHeading>
-      <PublisherSummaryTitle>Publisher's Summary</PublisherSummaryTitle>
-      <BookSummary>{publisherSummary}</BookSummary>
-    </ContentWrap>
-  );
+                                              author,
+                                              title,
+                                              imageUrl,
+                                              publisherSummary,
+                                          }) => {
+    return (
+        <ContentWrap>
+            <ContentHeading data-testid="content-heading">
+                <BookCoverImage>
+                    <img src={imageUrl} />
+                </BookCoverImage>
+                <TitleAndAuthorWrap>
+                    <BookTitle>{title}</BookTitle>
+                    <BookAuthor>{author}</BookAuthor>
+                </TitleAndAuthorWrap>
+            </ContentHeading>
+            <PublisherSummaryTitle>Publisher's Summary</PublisherSummaryTitle>
+            <BookSummary>{publisherSummary}</BookSummary>
+        </ContentWrap>
+    );
 };

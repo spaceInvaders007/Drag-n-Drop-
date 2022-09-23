@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {ShoppingWishlist} from "./ShoppingWishlist";
+import {ShoppingWishlist} from "./components/ShoppingWishlist";
 
 const AppStyles = styled.div`
   background-color: black;

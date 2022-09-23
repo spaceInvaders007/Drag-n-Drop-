@@ -1,8 +1,11 @@
 import styled from "styled-components";
-import VisibleIcon from "../../icons/visible.svg";
-import HiddenIcon from "../../icons/hidden.svg";
-import CloseIcon from "../../icons/close.svg";
-import { FC } from "react";
+// @ts-ignore
+import HiddenIcon from "../../icons/hidden.svg"
+// @ts-ignore
+import VisibleIcon from "../../icons/visible.svg"
+// @ts-ignore
+import CloseIcon from "../../icons/close.svg"
+import React, { FC } from "react";
 
 const Button = styled.button`
   border-radius: 5px;
@@ -16,6 +19,7 @@ const Button = styled.button`
   margin: 0 10px 10px 0px;
   color: white;
   justify-content: space-around;
+  opacity: ${({ isHidden }: { isHidden: boolean }) => (isHidden ? "0.5" : "1")}}
 `;
 
 const PointerIconWrap = styled.span`
@@ -29,6 +33,8 @@ const Title = styled.span`
   font-size: 12px;
   line-height: 18px;
   float: left;
+  text-decoration: ${({ isHidden }: { isHidden: boolean }) =>
+    isHidden ? "line-through" : "none"}}
 `;
 
 const Author = styled.span`
@@ -36,7 +42,10 @@ const Author = styled.span`
   font-weight: 700;
   font-size: 8px;
   line-height: 12px;
+  text-decoration: ${({ isHidden }: { isHidden: boolean }) =>
+    isHidden ? "line-through" : "none"}}
 `;
+
 const TitleAuthorWrap = styled.span`
   display: flex;
   flex-direction: column;
@@ -58,15 +67,18 @@ export const SidebarButton: FC<SidebarButtonProps> = ({
   isHidden,
   id,
 }) => {
+  const handleDragStart = (e: React.DragEvent<HTMLButtonElement>) => {
+    e.dataTransfer.setData("text", `${id}`);
+  };
 
   return (
-    <Button draggable >
+    <Button draggable onDragStart={handleDragStart} isHidden={isHidden}>
       <PointerIconWrap>
         {isHidden ? <img src={HiddenIcon} /> : <img src={VisibleIcon} />}
       </PointerIconWrap>
       <TitleAuthorWrap>
-        <Title>{title} </Title>
-        <Author>{author}</Author>
+        <Title isHidden={isHidden}>{title}</Title>
+        <Author isHidden={isHidden}>{author}</Author>
       </TitleAuthorWrap>
       <PointerIconWrap>
         <img src={CloseIcon} />

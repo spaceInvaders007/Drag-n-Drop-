@@ -1,7 +1,7 @@
-import { Sidebar } from "./components/sidebar/Sidebar";
-import { Content } from "./components/content/Content";
+import { Sidebar } from "./sidebar/Sidebar";
+import { Content } from "./content/Content";
 import { useEffect, useState } from "react";
-import { Book } from "./types";
+import { Book } from "../types";
 import styled from "styled-components";
 
 const SidebarWrap = styled.div`
@@ -52,7 +52,10 @@ export const ShoppingWishlist = () => {
   return (
     <>
       <SidebarWrap>
-        <Sidebar booksList={bookCollection} onMouseEnter={handleMouseEnter} />
+        <Sidebar
+          bookCollection={bookCollection}
+          onMouseEnter={handleMouseEnter}
+        />
       </SidebarWrap>
       <ContentWrap>
         <Content {...bookToShow} />

@@ -1,33 +1,40 @@
+import { useDragAndDrop } from "../../hooks/useDragAndDrop";
+import { Booklist } from "./Booklist";
 import { FC } from "react";
 import styled from "styled-components";
 import { SidebarHeader } from "./SidebarHeader";
 import { HiddenListSeparator } from "./HiddenListSeparator";
-import { Book } from "../../types";
-import {Booklist} from "./Booklist";
+import {Book} from "../../types";
 
 const SideBarWrap = styled.div`
   padding: 5px;
 `;
 
 type SidebarProps = {
-  booksList: Book[];
-    onMouseEnter: (id: string) => void;
+  bookCollection: Book[];
+  onMouseEnter: (id: string) => void;
 };
 
-export const Sidebar: FC<SidebarProps> = ({ booksList,onMouseEnter }) => {
+export const Sidebar: FC<SidebarProps> = ({ bookCollection, onMouseEnter }) => {
+  const { bookList, handleUpdateList } =
+    useDragAndDrop(bookCollection);
+
   return (
     <SideBarWrap>
       <SidebarHeader />
       <Booklist
-          booksList={booksList}
+        items={bookList}
         visibility={"visible"}
-          onMouseEnter={onMouseEnter}
+        handleUpdateList={handleUpdateList}
+        onMouseEnter={onMouseEnter}
       />
+
       <HiddenListSeparator />
       <Booklist
-          booksList={booksList}
-        visibility={"visible"}
-          onMouseEnter={onMouseEnter}
+        items={bookList}
+        visibility={"hidden"}
+        handleUpdateList={handleUpdateList}
+        onMouseEnter={onMouseEnter}
       />
     </SideBarWrap>
   );
