@@ -4,7 +4,7 @@ import { FC } from "react";
 import styled from "styled-components";
 import { SidebarHeader } from "./SidebarHeader";
 import { HiddenListSeparator } from "./HiddenListSeparator";
-import {Book} from "../../types";
+import { Book } from "../../types";
 
 const SideBarWrap = styled.div`
   padding: 5px;
@@ -16,8 +16,7 @@ type SidebarProps = {
 };
 
 export const Sidebar: FC<SidebarProps> = ({ bookCollection, onMouseEnter }) => {
-  const { bookList, handleUpdateList } =
-    useDragAndDrop(bookCollection);
+  const { bookList, handleUpdateList } = useDragAndDrop(bookCollection);
 
   return (
     <SideBarWrap>
