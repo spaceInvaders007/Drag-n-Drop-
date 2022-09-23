@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import VisibleIcon from "../icons/visible.svg";
-import HiddenIcon from "../icons/hidden.svg";
-import CloseIcon from "../icons/close.svg";
+import VisibleIcon from "../../icons/visible.svg";
+import HiddenIcon from "../../icons/hidden.svg";
+import CloseIcon from "../../icons/close.svg";
 import { FC } from "react";
 
 const Button = styled.button`
