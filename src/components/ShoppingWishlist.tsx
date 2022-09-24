@@ -28,7 +28,7 @@ export const ShoppingWishlist = () => {
   const [bookCollection, setBookCollection] = useState<Book[]>([]);
   const [bookToShow, setBookToShow] = useState<Book>();
   const [bookIdToShow, setBookIdToShow] = useState<string>();
-  const [visibleInitialState, setVisibleInitialState] = useState<string[]>([])
+  const [resetList, setResetList] = useState<boolean>(false)
 
   useEffect(() => {
     const extractedBook = bookCollection.find(
@@ -46,11 +46,15 @@ export const ShoppingWishlist = () => {
         .catch((error) => console.error(error));
     };
     fetchJson();
-  }, []);
+  }, [resetList]);
 
   const handleMouseEnter = (id: string) => {
     setBookIdToShow(id);
   };
+
+  const handleReset = () => {
+    setResetList(!resetList)
+  }
 
   return (
     <>
@@ -58,6 +62,7 @@ export const ShoppingWishlist = () => {
         <Sidebar
           bookCollection={bookCollection}
           onMouseEnter={handleMouseEnter}
+          handleReset={handleReset}
         />
       </SidebarWrap>
       <ContentWrap>

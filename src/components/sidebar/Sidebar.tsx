@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { SidebarHeader } from "./SidebarHeader";
 import { HiddenListSeparator } from "./HiddenListSeparator";
 import { Book } from "../../types";
+import { ResetButton } from "./ResetButton";
 
 const SideBarWrap = styled.div`
   padding: 5px;
@@ -13,9 +14,14 @@ const SideBarWrap = styled.div`
 type SidebarProps = {
   bookCollection: Book[];
   onMouseEnter: (id: string) => void;
+  handleReset: () => void;
 };
 
-export const Sidebar: FC<SidebarProps> = ({ bookCollection, onMouseEnter }) => {
+export const Sidebar: FC<SidebarProps> = ({
+  bookCollection,
+  onMouseEnter,
+  handleReset,
+}) => {
   const { bookList, handleUpdateList } = useDragAndDrop(bookCollection);
 
   return (
@@ -35,6 +41,7 @@ export const Sidebar: FC<SidebarProps> = ({ bookCollection, onMouseEnter }) => {
         handleUpdateList={handleUpdateList}
         onMouseEnter={onMouseEnter}
       />
+      <ResetButton handleReset={handleReset} />
     </SideBarWrap>
   );
 };
