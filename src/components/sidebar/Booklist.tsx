@@ -40,6 +40,7 @@ export const Booklist: FC<BooklistProps> = ({
                 isHidden={isHidden}
                 author={author}
                 id={id}
+                handleUpdateList={handleUpdateList}
               />
             </div>
           )

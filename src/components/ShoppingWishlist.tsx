@@ -28,6 +28,7 @@ export const ShoppingWishlist = () => {
   const [bookCollection, setBookCollection] = useState<Book[]>([]);
   const [bookToShow, setBookToShow] = useState<Book>();
   const [bookIdToShow, setBookIdToShow] = useState<string>();
+  const [visibleInitialState, setVisibleInitialState] = useState<string[]>([])
 
   useEffect(() => {
     const extractedBook = bookCollection.find(
@@ -36,9 +37,6 @@ export const ShoppingWishlist = () => {
     setBookToShow(extractedBook);
   }, [bookIdToShow, bookCollection]);
 
-  const handleMouseEnter = (id: string) => {
-    setBookIdToShow(id);
-  };
 
   useEffect(() => {
     const fetchJson = async () => {
@@ -49,6 +47,11 @@ export const ShoppingWishlist = () => {
     };
     fetchJson();
   }, []);
+
+  const handleMouseEnter = (id: string) => {
+    setBookIdToShow(id);
+  };
+
   return (
     <>
       <SidebarWrap>

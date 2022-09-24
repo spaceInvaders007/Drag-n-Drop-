@@ -1,10 +1,10 @@
 import styled from "styled-components";
 // @ts-ignore
-import HiddenIcon from "../../icons/hidden.svg"
+import HiddenIcon from "../../icons/hidden.svg";
 // @ts-ignore
-import VisibleIcon from "../../icons/visible.svg"
+import VisibleIcon from "../../icons/visible.svg";
 // @ts-ignore
-import CloseIcon from "../../icons/close.svg"
+import CloseIcon from "../../icons/close.svg";
 import React, { FC } from "react";
 
 const Button = styled.button`
@@ -22,9 +22,11 @@ const Button = styled.button`
   opacity: ${({ isHidden }: { isHidden: boolean }) => (isHidden ? "0.5" : "1")}}
 `;
 
-const PointerIconWrap = styled.span`
+const PointerIconWrap = styled.button`
   cursor: pointer;
   align-self: center;
+  background: none;
+  border: none;
 `;
 
 const Title = styled.span`
@@ -59,6 +61,7 @@ type SidebarButtonProps = {
   author: string;
   isHidden: boolean;
   id: string;
+  handleUpdateList: (id: string) => void;
 };
 
 export const SidebarButton: FC<SidebarButtonProps> = ({
@@ -66,6 +69,7 @@ export const SidebarButton: FC<SidebarButtonProps> = ({
   author,
   isHidden,
   id,
+  handleUpdateList,
 }) => {
   const handleDragStart = (e: React.DragEvent<HTMLButtonElement>) => {
     e.dataTransfer.setData("text", `${id}`);
@@ -73,7 +77,7 @@ export const SidebarButton: FC<SidebarButtonProps> = ({
 
   return (
     <Button draggable onDragStart={handleDragStart} isHidden={isHidden}>
-      <PointerIconWrap>
+      <PointerIconWrap onClick={() => handleUpdateList(id)}>
         {isHidden ? <img src={HiddenIcon} /> : <img src={VisibleIcon} />}
       </PointerIconWrap>
       <TitleAuthorWrap>
