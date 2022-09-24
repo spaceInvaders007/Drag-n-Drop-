@@ -7,14 +7,13 @@ import VisibleIcon from "../../icons/visible.svg";
 import CloseIcon from "../../icons/close.svg";
 import React, { FC } from "react";
 
-const Button = styled.button`
+const BookElement = styled.div`
   border-radius: 5px;
   display: flex;
   background: linear-gradient(85.5deg, #eb5a52 1.03%, #f7cd98 101.63%);
   padding: 0.5em;
-  width: 100%;
+  width: 95%;
   border: none;
-  min-height: 42px;
   box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
   margin: 0 10px 10px 0px;
   color: white;
@@ -35,6 +34,7 @@ const Title = styled.span`
   font-size: 12px;
   line-height: 18px;
   float: left;
+  text-align: left;
   text-decoration: ${({ isHidden }: { isHidden: boolean }) =>
     isHidden ? "line-through" : "none"}}
 `;
@@ -44,8 +44,9 @@ const Author = styled.span`
   font-weight: 700;
   font-size: 8px;
   line-height: 12px;
+  text-align: left;
   text-decoration: ${({ isHidden }: { isHidden: boolean }) =>
-    isHidden ? "line-through" : "none"}}
+    isHidden ? "line-through" : "none"}};
 `;
 
 const TitleAuthorWrap = styled.span`
@@ -71,12 +72,12 @@ export const SidebarButton: FC<SidebarButtonProps> = ({
   id,
   handleUpdateList,
 }) => {
-  const handleDragStart = (e: React.DragEvent<HTMLButtonElement>) => {
+  const handleDragStart = (e: React.DragEvent<HTMLDivElement>) => {
     e.dataTransfer.setData("text", `${id}`);
   };
 
   return (
-    <Button draggable onDragStart={handleDragStart} isHidden={isHidden}>
+    <BookElement draggable onDragStart={handleDragStart} isHidden={isHidden}>
       <PointerIconWrap onClick={() => handleUpdateList(id)}>
         {isHidden ? <img src={HiddenIcon} /> : <img src={VisibleIcon} />}
       </PointerIconWrap>
@@ -87,6 +88,6 @@ export const SidebarButton: FC<SidebarButtonProps> = ({
       <PointerIconWrap>
         <img src={CloseIcon} />
       </PointerIconWrap>
-    </Button>
+    </BookElement>
   );
 };
