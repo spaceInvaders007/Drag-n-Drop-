@@ -1,11 +1,12 @@
 import { useDragAndDrop } from "../../hooks/useDragAndDrop";
 import { Booklist } from "./Booklist";
-import { FC } from "react";
+import {FC, useEffect, useState} from "react";
 import styled from "styled-components";
 import { SidebarHeader } from "./SidebarHeader";
 import { HiddenListSeparator } from "./HiddenListSeparator";
 import { Book } from "../../types";
 import { ResetButton } from "./ResetButton";
+import {isEqual} from "../../helpers";
 
 const SideBarWrap = styled.div`
   padding: 5px;
@@ -22,7 +23,12 @@ export const Sidebar: FC<SidebarProps> = ({
   onMouseEnter,
   handleReset,
 }) => {
-  const { bookList, handleUpdateList } = useDragAndDrop(bookCollection);
+    const { bookList, handleUpdateList } = useDragAndDrop(bookCollection);
+    const [displayResetButton, setDisplayResetButton] = useState(false);
+
+    useEffect(()=> {
+        setDisplayResetButton(!isEqual(bookCollection, bookList))
+    },[handleUpdateList])
 
   return (
     <SideBarWrap>
@@ -41,7 +47,7 @@ export const Sidebar: FC<SidebarProps> = ({
         handleUpdateList={handleUpdateList}
         onMouseEnter={onMouseEnter}
       />
-      <ResetButton handleReset={handleReset} />
+        {displayResetButton && <ResetButton handleReset={handleReset} />}
     </SideBarWrap>
   );
 };
