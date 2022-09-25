@@ -6,6 +6,7 @@ import VisibleIcon from "../../icons/visible.svg";
 // @ts-ignore
 import CloseIcon from "../../icons/close.svg";
 import React, { FC } from "react";
+import { Visibility } from "../../types";
 
 const BookElement = styled.div`
   border-radius: 5px;
@@ -62,7 +63,8 @@ type SidebarButtonProps = {
   author: string;
   isHidden: boolean;
   id: string;
-  handleUpdateList: (id: string) => void;
+  handleUpdateList: (id: string, visibility: Visibility) => void;
+  visibility: Visibility;
 };
 
 export const SidebarButton: FC<SidebarButtonProps> = ({
@@ -71,14 +73,16 @@ export const SidebarButton: FC<SidebarButtonProps> = ({
   isHidden,
   id,
   handleUpdateList,
+  visibility,
 }) => {
   const handleDragStart = (e: React.DragEvent<HTMLDivElement>) => {
-    e.dataTransfer.setData("text", `${id}`);
+    const obj = JSON.stringify({ id: id, visibility: visibility });
+    e.dataTransfer.setData("text", obj);
   };
 
   return (
     <BookElement draggable onDragStart={handleDragStart} isHidden={isHidden}>
-      <PointerIconWrap onClick={() => handleUpdateList(id)}>
+      <PointerIconWrap onClick={() => handleUpdateList(id, visibility)}>
         {isHidden ? <img src={HiddenIcon} /> : <img src={VisibleIcon} />}
       </PointerIconWrap>
       <TitleAuthorWrap>

@@ -10,7 +10,7 @@ const StyledBookList = styled.div`
 type BooklistProps = {
   items: Book[];
   visibility: Visibility;
-  handleUpdateList: (id: string) => void;
+  handleUpdateList: (id: string, visibility: Visibility) => void;
   onMouseEnter: (id: string) => void;
 };
 
@@ -22,7 +22,8 @@ export const Booklist: FC<BooklistProps> = ({
 }) => {
   const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
-    handleUpdateList(e.dataTransfer.getData("text"));
+    const obj = JSON.parse(e.dataTransfer.getData("text"))
+    handleUpdateList(obj.id, visibility);
   };
 
   const handleDragOver = (e: React.DragEvent<HTMLDivElement>) =>
@@ -41,6 +42,7 @@ export const Booklist: FC<BooklistProps> = ({
                 author={author}
                 id={id}
                 handleUpdateList={handleUpdateList}
+                visibility={visibility}
               />
             </div>
           )

@@ -1,11 +1,11 @@
-import { useDragAndDrop } from "../../hooks/useDragAndDrop";
-import { Booklist } from "./Booklist";
+import {useDragAndDrop} from "../../hooks/useDragAndDrop";
+import {Booklist} from "./Booklist";
 import {FC, useEffect, useState} from "react";
 import styled from "styled-components";
-import { SidebarHeader } from "./SidebarHeader";
-import { HiddenListSeparator } from "./HiddenListSeparator";
-import { Book } from "../../types";
-import { ResetButton } from "./ResetButton";
+import {SidebarHeader} from "./SidebarHeader";
+import {HiddenListSeparator} from "./HiddenListSeparator";
+import {Book, Visibility} from "../../types";
+import {ResetButton} from "./ResetButton";
 import {isEqual} from "../../helpers";
 
 const SideBarWrap = styled.div`
@@ -35,7 +35,7 @@ export const Sidebar: FC<SidebarProps> = ({
       <SidebarHeader />
       <Booklist
         items={bookList}
-        visibility={"visible"}
+        visibility={Visibility.visible}
         handleUpdateList={handleUpdateList}
         onMouseEnter={onMouseEnter}
       />
@@ -43,7 +43,7 @@ export const Sidebar: FC<SidebarProps> = ({
       <HiddenListSeparator />
       <Booklist
         items={bookList}
-        visibility={"hidden"}
+        visibility={Visibility.hidden}
         handleUpdateList={handleUpdateList}
         onMouseEnter={onMouseEnter}
       />

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Book } from "../types";
+import { Book, Visibility } from "../types";
 
 export const useDragAndDrop = (initialState: Book[]) => {
   const [bookList, setBookList] = useState<Book[]>(initialState);
@@ -8,10 +8,15 @@ export const useDragAndDrop = (initialState: Book[]) => {
     setBookList(initialState);
   }, [initialState]);
 
-  const handleUpdateList = (id: string) => {
+  const handleUpdateList = (id: string, visibility: Visibility) => {
     let book = bookList.find((book) => book.id === id);
-
     if (book) {
+      if (
+        (book.isHidden && visibility === "hidden") ||
+        (!book.isHidden && visibility === "visible")
+      ) {
+        return;
+      }
       book.isHidden = !book?.isHidden;
       setBookList((prev) => [book!, ...prev.filter((item) => item.id !== id)]);
     }
