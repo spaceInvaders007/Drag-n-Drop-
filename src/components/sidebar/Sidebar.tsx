@@ -1,12 +1,12 @@
-import {useDragAndDrop} from "../../hooks/useDragAndDrop";
-import {Booklist} from "./Booklist";
-import {FC, useEffect, useState} from "react";
+import { useDragAndDrop } from "../../hooks/useDragAndDrop";
+import { Booklist } from "./Booklist";
+import { FC, useEffect, useState } from "react";
 import styled from "styled-components";
-import {SidebarHeader} from "./SidebarHeader";
-import {HiddenListSeparator} from "./HiddenListSeparator";
-import {Book, Visibility} from "../../types";
-import {ResetButton} from "./ResetButton";
-import {isEqual} from "../../helpers";
+import { SidebarHeader } from "./SidebarHeader";
+import { HiddenListSeparator } from "./HiddenListSeparator";
+import { Book, Visibility } from "../../types";
+import { ResetButton } from "./ResetButton";
+import { isEqual } from "../../helpers";
 
 const SideBarWrap = styled.div`
   padding: 5px;
@@ -23,31 +23,30 @@ export const Sidebar: FC<SidebarProps> = ({
   onMouseEnter,
   handleReset,
 }) => {
-    const { bookList, handleUpdateList } = useDragAndDrop(bookCollection);
-    const [displayResetButton, setDisplayResetButton] = useState(false);
+  const { bookList, handleUpdateList } = useDragAndDrop(bookCollection);
+  const [displayResetButton, setDisplayResetButton] = useState(false);
 
-    useEffect(()=> {
-        setDisplayResetButton(!isEqual(bookCollection, bookList))
-    },[handleUpdateList])
+  useEffect(() => {
+    setDisplayResetButton(!isEqual(bookCollection, bookList));
+  }, [handleUpdateList]);
+
+  const bookListArray = [Visibility.visible, Visibility.hidden];
 
   return (
     <SideBarWrap>
       <SidebarHeader />
-      <Booklist
-        items={bookList}
-        visibility={Visibility.visible}
-        handleUpdateList={handleUpdateList}
-        onMouseEnter={onMouseEnter}
-      />
-
-      <HiddenListSeparator />
-      <Booklist
-        items={bookList}
-        visibility={Visibility.hidden}
-        handleUpdateList={handleUpdateList}
-        onMouseEnter={onMouseEnter}
-      />
-        {displayResetButton && <ResetButton handleReset={handleReset} />}
+      {bookListArray.map((visibility, index) => (
+        <>
+          <Booklist
+            items={bookList}
+            visibility={visibility}
+            handleUpdateList={handleUpdateList}
+            onMouseEnter={onMouseEnter}
+          />
+          {index === 0 && <HiddenListSeparator />}
+        </>
+      ))}
+      {displayResetButton && <ResetButton handleReset={handleReset} />}
     </SideBarWrap>
   );
 };
