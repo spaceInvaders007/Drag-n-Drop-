@@ -12,6 +12,7 @@ type BooklistProps = {
   visibility: Visibility;
   handleUpdateList: (id: string, visibility: Visibility) => void;
   onMouseEnter: (id: string) => void;
+  handleVisibilityClick: (id: string, visibility: Visibility) => void;
 };
 
 export const Booklist: FC<BooklistProps> = ({
@@ -19,10 +20,11 @@ export const Booklist: FC<BooklistProps> = ({
   visibility,
   handleUpdateList,
   onMouseEnter,
+  handleVisibilityClick,
 }) => {
   const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
-    const obj = JSON.parse(e.dataTransfer.getData("text"))
+    const obj = JSON.parse(e.dataTransfer.getData("text"));
     handleUpdateList(obj.id, visibility);
   };
 
@@ -41,8 +43,8 @@ export const Booklist: FC<BooklistProps> = ({
                 isHidden={isHidden}
                 author={author}
                 id={id}
-                handleUpdateList={handleUpdateList}
                 visibility={visibility}
+                handleVisibilityClick={handleVisibilityClick}
               />
             </div>
           )

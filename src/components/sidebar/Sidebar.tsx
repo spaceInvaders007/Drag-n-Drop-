@@ -23,7 +23,7 @@ export const Sidebar: FC<SidebarProps> = ({
   onMouseEnter,
   handleReset,
 }) => {
-  const { bookList, handleUpdateList } = useDragAndDrop(bookCollection);
+  const { bookList, handleUpdateList, handleVisibilityClick } = useDragAndDrop(bookCollection);
   const [displayResetButton, setDisplayResetButton] = useState(false);
 
   useEffect(() => {
@@ -36,15 +36,16 @@ export const Sidebar: FC<SidebarProps> = ({
     <SideBarWrap>
       <SidebarHeader />
       {bookListArray.map((visibility, index) => (
-        <>
+        <div key={visibility}>
           <Booklist
             items={bookList}
             visibility={visibility}
             handleUpdateList={handleUpdateList}
             onMouseEnter={onMouseEnter}
+            handleVisibilityClick={handleVisibilityClick}
           />
           {index === 0 && <HiddenListSeparator />}
-        </>
+        </div>
       ))}
       {displayResetButton && <ResetButton handleReset={handleReset} />}
     </SideBarWrap>

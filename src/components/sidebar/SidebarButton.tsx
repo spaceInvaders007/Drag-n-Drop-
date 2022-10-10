@@ -63,8 +63,8 @@ type SidebarButtonProps = {
   author: string;
   isHidden: boolean;
   id: string;
-  handleUpdateList: (id: string, visibility: Visibility) => void;
   visibility: Visibility;
+  handleVisibilityClick: (id: string, visibility: Visibility) => void;
 };
 
 export const SidebarButton: FC<SidebarButtonProps> = ({
@@ -72,8 +72,8 @@ export const SidebarButton: FC<SidebarButtonProps> = ({
   author,
   isHidden,
   id,
-  handleUpdateList,
   visibility,
+  handleVisibilityClick,
 }) => {
   const handleDragStart = (e: React.DragEvent<HTMLDivElement>) => {
     const obj = JSON.stringify({ id: id, visibility: visibility });
@@ -82,7 +82,7 @@ export const SidebarButton: FC<SidebarButtonProps> = ({
 
   return (
     <BookElement draggable onDragStart={handleDragStart} isHidden={isHidden}>
-      <PointerIconWrap onClick={() => handleUpdateList(id, visibility)}>
+      <PointerIconWrap onClick={() => handleVisibilityClick(id, visibility)}>
         {isHidden ? <img src={HiddenIcon} /> : <img src={VisibleIcon} />}
       </PointerIconWrap>
       <TitleAuthorWrap>

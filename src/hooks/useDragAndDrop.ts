@@ -22,8 +22,18 @@ export const useDragAndDrop = (initialState: Book[]) => {
     }
   };
 
+
+  const handleVisibilityClick = (id: string, visibility: Visibility) => {
+    let book = bookList.find((book) => book.id === id);
+    if (book) {
+      book.isHidden = !book?.isHidden;
+      setBookList((prev) => [book!, ...prev.filter((item) => item.id !== id)]);
+    }
+  };
+
   return {
     bookList,
     handleUpdateList,
+    handleVisibilityClick
   };
 };
